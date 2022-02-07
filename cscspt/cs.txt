@@ -1,0 +1,42 @@
+0x0005  0x0006
+glDisable(0x0B71)
+glBegin = [027E89EC]
+glDisable = [027E81BC]
+
+//jmp
+glbegin
+8BFF558BEC
+E9B80D0900
+
+700D695D
+//opcode
+glbegin + 90DBD
+700D695D - 81 7C 24 04 05000000  - cmp [esp+04],00000005 { 5 }
+700D6965 - 74 0A                 - je 700D6971
+700D6967 - 81 7C 24 04 06000000  - cmp [esp+04],00000006 { 6 }
+700D696F - 75 0B                 - jne 700D697C
+700D6971 - 68 710B0000           - push 00000B71 { 2929 }
+700D6976 - FF 15 BC817E02        - call dword ptr [027E81BC] { ->OPENGL32.glDisable }
+700D697C - 8B FF                 - mov edi,edi
+700D697E - 55                    - push ebp
+700D697F - 8B EC                 - mov ebp,esp
+700D6981 - E9 1AF2F6FF           - jmp OPENGL32.glBegin+5
+
+81 7C 24 04 05 00 00 00 74 0A 81 7C 24 04 06 00 00 00 75 0B 68 71 0B 00 00 FF 15 BC 81 7E 02 8B FF 55 8B EC E9 1F F2 F6 FF
+
+
+//acg opcode
+DDRAW.dll+A695D - 81 7C 24 04 07000000  - cmp [esp+04],00000007 { 7 }
+DDRAW.dll+A6965 - 75 0B                 - jne DDRAW.dll+A6972
+DDRAW.dll+A6967 - 68 710B0000           - push 00000B71 { 2929 }
+DDRAW.dll+A696C - FF 15 BC817E02        - call dword ptr [hl.exe+13E81BC] { ->OPENGL32.glDisable }
+DDRAW.dll+A6972 - 8B FF                 - mov edi,edi
+DDRAW.dll+A6974 - 55                    - push ebp
+DDRAW.dll+A6975 - 8B EC                 - mov ebp,esp
+DDRAW.dll+A6977 - E9 29F2F6FF           - jmp OPENGL32.glBegin+5
+81 7C 24 04 07 00 00 00 75 0B 68 71 0B 00 00 FF 15 BC 81 7E 02 8B FF 55 8B EC E9 29 F2 F6 FF
+
+//sp
+[027E8064]OPENGL32.glReadPixels+3F - FF 75 0C              - push [ebp+0C]
+[027E8064]OPENGL32.glReadPixels+42 - FF 75 08              - push [ebp+08]
+FF 75 00
